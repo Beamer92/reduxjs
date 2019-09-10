@@ -1,6 +1,23 @@
 import React, {Component} from 'react'
+import store from '../redux/store'
+import {changeName} from '../redux/actions/main'
+import {connect} from 'react-redux'
 
-export default class Body extends Component{
+const mapStateToProps = (state) => {
+    return {
+        
+    }
+}
+
+
+const mapDispatchToprops = (dispatch) => {
+    return {
+        updateName: (newName) => dispatch(changeName(newName))
+    }
+}
+
+
+class Body extends Component{
     constructor(props)
     {
         super()
@@ -22,7 +39,7 @@ export default class Body extends Component{
     updateStuff=(e)=>
     {
         e.preventDefault()
-        this.props.updateData(this.state.formName)
+        this.props.updateName(this.state.formName)
 
         let backgroundColor = this.state.formColor.length > 0 ? this.state.formColor : this.state.styles.backgroundColor
 
@@ -63,3 +80,5 @@ export default class Body extends Component{
         )
     }
 }
+
+export default connect(mapStateToProps, mapDispatchToprops)(Body);

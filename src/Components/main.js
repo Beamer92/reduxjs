@@ -4,8 +4,23 @@ import Body from './body'
 import Footer from './footer'
 import Page2 from './page2'
 import '../Style/index.css'
+import store from '../redux/store'
+import { changeName } from '../redux/actions/main'
+import {connect} from 'react-redux'
 
-export default class Main extends Component
+const mapStateToProps = (state) => {
+    return {
+        name: state.name
+    }
+}
+
+
+const mapDispatchToprops = (dispatch) => {
+    return {}
+}
+
+
+class Main extends Component
 {
     constructor(props)
     {
@@ -13,7 +28,7 @@ export default class Main extends Component
 
         this.state = {
             time: new Date().toLocaleTimeString(),
-            name: "The Dude",
+            // name: "The Dude",
             pictureToggle: false,
             page2: false
         }
@@ -42,14 +57,6 @@ export default class Main extends Component
         })
     }
 
-    updateData=(nameInput)=>{
-        let name = nameInput.length > 0 ? nameInput : this.state.name;
-
-        this.setState({
-            name
-        })
-    }
-
     updatePages = () => {
         this.setState({
             page2: !this.state.page2
@@ -60,15 +67,18 @@ export default class Main extends Component
     {
         return(
             <div>
-                <NavBar name={this.state.name} time={this.state.time} swapPages={this.updatePages}/>
-                {/* <Body toggleToggle={this.toggleToggle} tog={this.state.toggle} updateData={this.updateData}/> */}
-                {
+                <NavBar name={this.props.name} time={this.state.time} swapPages={this.updatePages}/>
+                <Body toggleToggle={this.toggleToggle} tog={this.state.toggle} updateData={this.updateData}/>
+                {/* {
                     this.state.page2 === false ? 
                     <Body toggleToggle={this.toggleToggle} tog={this.state.pictureToggle} updateData={this.updateData}/> :
                     <Page2 />
-                }
-                <Footer title={"React JS App"}/>
+                } */}
+                <Footer title={"Redux JS App"}/>
             </div>
         )
     }
 }
+
+Main = connect(mapStateToProps, mapDispatchToprops)(Main);
+export default Main;
