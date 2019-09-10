@@ -2,6 +2,7 @@ import React, {Component} from 'react'
 import NavBar from './navbar'
 import Body from './body'
 import Footer from './footer'
+import Page2 from './page2'
 import '../Style/index.css'
 
 export default class Main extends Component
@@ -13,14 +14,14 @@ export default class Main extends Component
         this.state = {
             time: new Date().toLocaleTimeString(),
             name: "The Dude",
-            toggle: false,
-
+            pictureToggle: false,
+            page2: false
         }
     }
 
     componentDidMount()
     {
-        console.log(this.state.toggle)
+        console.log(this.state.pictureToggle)
         setInterval(() => 
         {
             this.tick()
@@ -37,7 +38,7 @@ export default class Main extends Component
     toggleToggle = () =>
     {   
         this.setState({
-            toggle: !this.state.toggle
+            pictureToggle: !this.state.pictureToggle
         })
     }
 
@@ -49,12 +50,23 @@ export default class Main extends Component
         })
     }
 
+    updatePages = () => {
+        this.setState({
+            page2: !this.state.page2
+        })
+    }
+
     render()
     {
         return(
             <div>
-                <NavBar name={this.state.name} time={this.state.time} />
-                <Body toggleToggle={this.toggleToggle} tog={this.state.toggle} updateData={this.updateData}/>
+                <NavBar name={this.state.name} time={this.state.time} swapPages={this.updatePages}/>
+                {/* <Body toggleToggle={this.toggleToggle} tog={this.state.toggle} updateData={this.updateData}/> */}
+                {
+                    this.state.page2 === false ? 
+                    <Body toggleToggle={this.toggleToggle} tog={this.state.pictureToggle} updateData={this.updateData}/> :
+                    <Page2 />
+                }
                 <Footer title={"React JS App"}/>
             </div>
         )
