@@ -1,0 +1,63 @@
+body{
+    background-color: #434750;
+    border: 5px solid silver;
+    color: white;
+}
+
+nav {
+    display: flex;
+    padding: 1vh;
+    justify-content: center;
+}
+
+nav div {
+    margin-left: 1vh;
+    margin-right: 1vh;
+    padding: 1vh;
+}
+
+.typeimg {
+    height: 4vh;
+    margin: .5vh;
+}
+
+#btnpic {
+    background-color: rgb(78, 122, 245);
+    color: white;
+    border: 1px solid rgb(221, 221, 221);
+}
+
+form input{
+    margin-right: 2%;
+}
+
+.sub {
+    background-color: greenyellow;
+}
+
+#weather {
+    max-width: 2.5vw;
+}
+
+.container {
+    margin-bottom: 5%;
+}
+
+.flex-row{
+    justify-content: center;
+    padding: 1vh;
+}
+
+ul .listItem {
+    list-style-type: square;
+    color: gold;
+    font-weight: bold;
+  }
+
+.col-md-6 {
+    margin-top: 10%;
+}
+
+footer{
+    padding: 2vh;
+}
